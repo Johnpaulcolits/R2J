@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../src/output.css">
+<style>
+
+</style>
+
+</head>
+<body>
+
+    <!--header of the Page-->
+   <header class="bg-[#02766f] h-24 flex items-center justify-between ">
+      
+    <!--Left Part of the Header-->
+    <div class="ml-20" >
+       <a href=""><p class="text-neutral-50 text-3xl font-extrabold">CustomCraft</p></a>
+    </div>
+
+   <!--Right Part of the Header-->
+    <div class="flex items-center justify-between w-1/2 mr-20">
+     <div>
+        <a href="index.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal ">Home</p></a>
+     </div>
+     <div>
+        <a href="products.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Products</p></a>
+     </div>
+     <div>
+        <a href="about.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">About</p></a>
+     </div>
+     <div>
+        <a href="signin.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Sign in</p></a>
+     </div>
+     <div>
+        <a href="signup.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Sign up</p></a>
+     </div>
+    </div>
+   </header>
+
+
+<script>
+   // Get all the navigation links
+   const navLinks = document.querySelectorAll('.nav-link');
+
+// Function to highlight the active link
+function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    navLinks.forEach(link => {
+        // Remove underline from all links
+        link.classList.remove('underline', 'underline-offset-8', 'decoration-white');
+        // Add underline to the link that matches the current path
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('underline', 'underline-offset-8', 'decoration-white');
+        }
+    });
+}
+
+// Call the function to highlight the active link on page load
+highlightActiveLink();
+
+// Add event listener to each link
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        // Store the clicked link's href in localStorage
+        localStorage.setItem('activeLink', this.getAttribute('href'));
+    });
+});
+
+// On page load, apply the active link style
+document.addEventListener('DOMContentLoaded', () => {
+    const activeLink = localStorage.getItem('activeLink');
+    if (activeLink) {
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === activeLink) {
+                link.classList.add('underline', 'underline-offset-8', 'decoration-white');
+            }
+        });
+    }
+});
+</script>
+
+
+
+</body>
+</html>
