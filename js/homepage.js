@@ -44,3 +44,50 @@ function headerFunction(){
    });
 }
 headerFunction();
+
+
+function Authentication(){
+    
+document.addEventListener("DOMContentLoaded", () => {
+    const registrationForm = document.getElementById('registration-form');
+    const loginForm = document.getElementById('login-form');
+
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            formData.append('action', 'register');
+
+            fetch('../controller/user.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            formData.append('action', 'login');
+
+            fetch('../controller/user.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => alert(data))
+            .catch(error => console.error('Error:', error));
+        });
+    }
+});
+}
+
+Authentication();
+
+
+
+
