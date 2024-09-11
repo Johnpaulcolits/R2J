@@ -6,6 +6,8 @@
     <title>Sign up</title>
     <link rel="stylesheet" href="../src/output.css">
     <script src="../js/homepage.js" defer></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+   
 
 </head>
 <body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('../src/img/bg.png');">
@@ -51,6 +53,13 @@
           <input type="password" id="password" name="password" required>
           <button type="submit">Register</button>
       </form>
+
+      <!-- Google Sign-Up Button -->
+      <div id="g_id_onload"
+          data-client_id="806695403781-0igge161g3vhh6ulu6u0f00pbt2tn267.apps.googleusercontent.com"
+          data-callback="handleCredentialResponse">
+      </div>
+      <div class="g_id_signin" data-type="standard"></div>
   </div>
 
 </body>
