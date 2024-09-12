@@ -1,0 +1,33 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../view/sign_in.html");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-lg mx-auto bg-white p-8 shadow-lg rounded-lg">
+        <h1 class="text-2xl font-semibold mb-4">Welcome, <?php echo $_SESSION['name']; ?></h1>
+
+        <!-- User Information Section -->
+        <div class="mb-4">
+            <p><strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
+            <img src="<?php echo $_SESSION['picture']; ?>" alt="User Picture" class="w-16 h-16 rounded-full mt-2">
+        </div>
+
+        <!-- Logout Button -->
+        <form action="../../controller/logout.php" method="post">
+            <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Logout</button>
+        </form>
+    </div>
+</body>
+</html>

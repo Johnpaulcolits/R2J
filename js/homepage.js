@@ -45,47 +45,47 @@ headerFunction();
 
 
 
-function Authentication(){
+// function Authentication(){
     
-    document.addEventListener("DOMContentLoaded", () => {
-        const registrationForm = document.getElementById('registration-form');
-        const loginForm = document.getElementById('login-form');
+//     document.addEventListener("DOMContentLoaded", () => {
+//         const registrationForm = document.getElementById('registration-form');
+//         const loginForm = document.getElementById('login-form');
     
-        if (registrationForm) {
-            registrationForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                formData.append('action', 'register');
+//         if (registrationForm) {
+//             registrationForm.addEventListener('submit', function(e) {
+//                 e.preventDefault();
+//                 const formData = new FormData(this);
+//                 formData.append('action', 'register');
     
-                fetch('../controller/user.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => alert(data))
-                .catch(error => console.error('Error:', error));
-            });
-        }
+//                 fetch('../controller/user.php', {
+//                     method: 'POST',
+//                     body: formData
+//                 })
+//                 .then(response => response.text())
+//                 .then(data => alert(data))
+//                 .catch(error => console.error('Error:', error));
+//             });
+//         }
     
-        if (loginForm) {
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const formData = new FormData(this);
-                formData.append('action', 'login');
+//         if (loginForm) {
+//             loginForm.addEventListener('submit', function(e) {
+//                 e.preventDefault();
+//                 const formData = new FormData(this);
+//                 formData.append('action', 'login');
     
-                fetch('../controller/user.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => alert(data))
-                .catch(error => console.error('Error:', error));
-            });
-        }
-    });
-    }
+//                 fetch('../controller/user.php', {
+//                     method: 'POST',
+//                     body: formData
+//                 })
+//                 .then(response => response.text())
+//                 .then(data => alert(data))
+//                 .catch(error => console.error('Error:', error));
+//             });
+//         }
+//     });
+//     }
     
-    Authentication();
+//     Authentication();
 
 
 
@@ -105,7 +105,7 @@ function Authentication(){
 //             .then(response => response.text())
 //             .then(data => {
 //                 if (data === 'success') {
-//                     window.location.href = '/home';  // Redirect after successful login
+//                     window.location.href = '../view/products/home.html';  // Redirect after successful login
 //                 } else {
 //                     alert('Google login failed: ' + data);
 //                 }
@@ -135,7 +135,7 @@ function Authentication(){
 //                 const formData = new FormData(this);
 //                 formData.append('action', 'login');
     
-//                 fetch('../controller/users.php', {
+//                 fetch('../controller/user.php', {
 //                     method: 'POST',
 //                     body: formData
 //                 })
@@ -149,3 +149,67 @@ function Authentication(){
 // googleAuth();
 
 
+
+// This function is for the header of the view pages
+function headerFunction() {
+    window.handleCredentialResponse = function(response) {
+        fetch('../controller/user.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'id_token=' + response.credential + '&action=google_login'
+        })
+        .then(response => response.json())  // Expect JSON response
+        .then(data => {
+            if (data.status === 'user_exists') {
+                // User exists, proceed to home page
+                window.location.href = '../view/products/home.html';
+            } else if (data.status === 'new_user') {
+                // New user, redirect to home page after registration
+                window.location.href = '../view/products/home.html';
+            } else {
+                // Handle error cases
+                alert('Google login failed: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    };
+    
+}
+
+headerFunction();
+
+
+
+
+
+// if (registrationForm) {
+//     registrationForm.addEventListener('submit', function(e) {
+//         e.preventDefault();
+//         const formData = new FormData(this);
+//         formData.append('action', 'register');
+
+//         fetch('../controller/user.php', {
+//             method: 'POST',
+//             body: formData
+//         })
+//         .then(response => response.text())
+//         .then(data => alert(data))
+//         .catch(error => console.error('Error:', error));
+//     });
+// }
+
+// if (loginForm) {
+//     loginForm.addEventListener('submit', function(e) {
+//         e.preventDefault();
+//         const formData = new FormData(this);
+//         formData.append('action', 'login');
+
+//         fetch('../controller/user.php', {
+//             method: 'POST',
+//             body: formData
+//         })
+//         .then(response => response.text())
+//         .then(data => alert(data))
+//         .catch(error => console.error('Error:', error));
+//     });
+// }

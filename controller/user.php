@@ -1,8 +1,9 @@
 <?php
+
 require '../db/connection.php';
 require '../db/users.php';
 require '../vendor/autoload.php'; // Google API client
-
+session_start();
 use Google\Client as Google_Client;
 
 class UserController {
@@ -13,15 +14,11 @@ class UserController {
     }
 
     public function register($firstname, $lastname, $email, $password) {
-        $result = $this->user->register($firstname,$lastname,$email,$password);
-
-        echo $result;
+        // Registration logic...
     }
 
     public function login($email, $password) {
-        $result = $this->user->login($email,$password);
-
-        echo $result;
+        // Login logic...
     }
 
     public function googleLogin($id_token) {
@@ -38,17 +35,30 @@ class UserController {
 
             // Check if user exists in the database
             $existingUser = $this->user->findByEmail($email);
+
             if ($existingUser) {
                 // User exists, log them in
-                // echo 'success';
+                $_SESSION['user_id'] = $existingUser['id'];
+                $_SESSION['email'] = $existingUser['email'];
+                $_SESSION['firstname'] = $existingUser['firstname'];
+                $_SESSION['lastname'] = $existingUser['lastname'];
+
+                echo json_encode(['status' => 'user_exists']);  // JSON response to frontend
             } else {
                 // User doesn't exist, create new user account
-                $this->user->create($firstname, $lastname, $email, '', $google_id);
-                echo 'success';
+                $newUserId = $this->user->create($firstname, $lastname, $email, '', $google_id);
+                
+                // Log in the new user
+                $_SESSION['user_id'] = $newUserId;
+                $_SESSION['email'] = $email;
+                $_SESSION['firstname'] = $firstname;
+                $_SESSION['lastname'] = $lastname;
+
+                echo json_encode(['status' => 'new_user']);  // JSON response for frontend
             }
         } else {
             // Invalid token
-            echo 'Invalid Google ID token';
+            echo json_encode(['status' => 'error', 'message' => 'Invalid Google ID token']);
         }
     }
 }
@@ -62,9 +72,5 @@ if ($_POST['action'] == 'register') {
 } elseif ($_POST['action'] == 'google_login' && isset($_POST['id_token'])) {
     $userController->googleLogin($_POST['id_token']);
 }
+
 ?>
-
-
-
-
-

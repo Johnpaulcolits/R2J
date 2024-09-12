@@ -8,6 +8,21 @@
     <script src="../js/homepage.js" defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   
+<!-- <style>
+   .sign-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #30303080;
+      height: 400px;
+      width: 50%;
+      margin-top: 10%;
+      margin-left: 30%;
+   }
+</style> -->
+
+
+
 
 
 </head>
@@ -42,22 +57,51 @@
    </header>
 
 
-   <div id="signin-form">
-      <h2>Sign In</h2>
-      <form id="login-form">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-          <button type="submit">Login</button>
-      </form>
-       <!-- Google Sign-In Button -->
-       <div id="g_id_onload"
-       data-client_id="806695403781-0igge161g3vhh6ulu6u0f00pbt2tn267.apps.googleusercontent.com"
-       data-callback="handleCredentialResponse">
-   </div>
+
+
+  
+   
+   <!--Container-->
+   <div class="bg-[#30303080] flex justify-between items-center  h-4/6 w-9/12 ml-52 mt-28 rounded-2xl">
+
+
+
+    <div class="flex-row ml-52">
+<h1 class="text-slate-50 text-7xl font-extrabold mb-12">SIGN IN</h1>
+<p class="text-slate-50 text-3xl font-light">Ready to craft your unique</p>
+  <p class="text-slate-50 text-3xl font-light"> experience? sign in and let the</p>
+   <p class="text-slate-50 text-3xl font-light mb-16"> customization begin!</p>
+
+ <!-- Google Sign-In Button -->
+
+ <div id="g_id_onload"
+ data-client_id="806695403781-0igge161g3vhh6ulu6u0f00pbt2tn267.apps.googleusercontent.com"
+ data-callback="handleCredentialResponse">
+</div>
    <div class="g_id_signin" data-type="standard"></div>
+   <a href="signup.html"><p class="text-slate-50 font-light text-2xl mt-5">Create new Account</p></a>
+    </div>
+
+   <!--Login Form-->
+   <div id="signin-form" class="mr-52 ">
+      
+      <form id="login-form" >
+        
+     
+          <input type="email" id="email" name="email" required class="bg-transparent border-b-2
+           border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " placeholder="Email"><br>
+   
+          <input type="password" id="password" name="password" required class="bg-transparent border-b-2
+           border-slate-50  placeholder-slate-50 w-96 text-2xl text-center p-2 text-slate-50 mt-24" placeholder="Password" placeholder="Password" ><br>
+          <button type="submit" class="bg-[#303030FF] ml-24 text-slate-300 h-20 w-52 rounded-2xl mt-10 text-3xl font-light">Login</button>
+         
+          
+      </form>
+
+      
+      
   </div>
+
 </div>
 
 
