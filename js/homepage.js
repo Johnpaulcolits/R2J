@@ -151,7 +151,7 @@ headerFunction();
 
 
 // This function is for the header of the view pages
-function headerFunction() {
+function googleAuth() {
     window.handleCredentialResponse = function(response) {
         fetch('../controller/user.php', {
             method: 'POST',
@@ -176,7 +176,7 @@ function headerFunction() {
     
 }
 
-headerFunction();
+googleAuth();
 
 
 
@@ -213,3 +213,64 @@ headerFunction();
 //         .catch(error => console.error('Error:', error));
 //     });
 // }
+
+function Authentication(){
+    document.addEventListener('DOMContentLoaded', function () {
+        const registrationForm = document.getElementById('registration-form');
+        const loginForm = document.getElementById('login-form');
+    
+        // Registration form submission
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+    
+                const formData = new FormData(this);
+                formData.append('action', 'register');
+    
+                fetch('../controller/user.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())  // Expect a JSON response from the server
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert('Registration successful!');
+                            // Redirect to login page or dashboard
+                            window.location.href = '../view/products/home.html';
+                        } else {
+                            alert('Error: ' + data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        }
+    
+        // Login form submission
+        if (loginForm) {
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+    
+                const formData = new FormData(this);
+                formData.append('action', 'login');
+    
+                fetch('../controller/user.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())  // Expect a JSON response from the server
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert('Login successful!');
+                            // Redirect to dashboard or homepage after login
+                            window.location.href = '../view/products/home.html';
+                        } else {
+                            alert('Error: ' + data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        }
+    });
+    
+}
+Authentication();

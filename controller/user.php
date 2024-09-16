@@ -13,12 +13,48 @@ class UserController {
         $this->user = new User();
     }
 
-    public function register($firstname, $lastname, $email, $password) {
-        // Registration logic...
+    public function register($firstname, $lastname, $email, $password, $confirm_password) {
+        //Checking if the password is match
+        if($password !== $confirm_password){
+            echo json_encode(['status' => 'error', 'message' => 'Password do not match']);
+            return;
+        }
+        
+        //Check if the user already exists
+        $userExist = $this->user->findByEmail($email);
+        if($userExist){
+            echo json_encode(['status' => 'error', 'message' => 'User already exist']);
+
+        }else{
+            // Hash the password for security
+
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            $this->user->create($firstname,$lastname,$email,$hashedPassword);
+
+            $_SESSION['email'] = $email;
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['lastname'] = $lastname;
+            // Return success response
+            echo json_encode(['status' => 'success', 'message' => 'User registered successfully']);
+        }
+
+
+
+
     }
 
     public function login($email, $password) {
-        // Login logic...
+        $user = $this->user->findByEmail($email);
+
+        if($user && password_verify($password, $user['password'])){
+            $_SESSION['email'] = $user['email'];
+                // Return success response
+            echo json_encode(['status' => 'success', 'message' => 'Login successful']);
+        }else{
+             // Invalid credentials
+             echo json_encode(['status' => 'error', 'message' => 'Invalid email or password']);
+        }
     }
 
     public function googleLogin($id_token) {
@@ -66,7 +102,7 @@ class UserController {
 $userController = new UserController();
 
 if ($_POST['action'] == 'register') {
-    $userController->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password']);
+    $userController->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['password'], $_POST['confirm_password']);
 } elseif ($_POST['action'] == 'login') {
     $userController->login($_POST['email'], $_POST['password']);
 } elseif ($_POST['action'] == 'google_login' && isset($_POST['id_token'])) {
