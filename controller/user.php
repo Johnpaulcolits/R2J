@@ -4,6 +4,7 @@ require '../db/connection.php';
 require '../db/users.php';
 require '../vendor/autoload.php'; // Google API client
 session_start();
+use Ulid\Ulid;
 use Google\Client as Google_Client;
 
 class UserController {
@@ -26,12 +27,15 @@ class UserController {
             echo json_encode(['status' => 'error', 'message' => 'User already exist']);
 
         }else{
+
+            $id = Ulid::generate(true);
             // Hash the password for security
 
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-            $this->user->create($firstname,$lastname,$email,$hashedPassword);
+            $this->user->create($id,$firstname,$lastname,$email,$hashedPassword);
 
+            $_SESSION['id'] = $id;
             $_SESSION['email'] = $email;
             $_SESSION['firstname'] = $firstname;
             $_SESSION['lastname'] = $lastname;
@@ -58,6 +62,7 @@ class UserController {
     }
 
     public function googleLogin($id_token) {
+        $id = Ulid::generate(true);
         // Verify the ID token with Google
         $client = new Google_Client(['client_id' => '806695403781-0igge161g3vhh6ulu6u0f00pbt2tn267.apps.googleusercontent.com']);  // Specify the CLIENT_ID of the app
         $payload = $client->verifyIdToken($id_token);
@@ -82,7 +87,7 @@ class UserController {
                 echo json_encode(['status' => 'user_exists']);  // JSON response to frontend
             } else {
                 // User doesn't exist, create new user account
-                $newUserId = $this->user->create($firstname, $lastname, $email, '', $google_id);
+                $newUserId = $this->user->create($id,$firstname, $lastname, $email, '', $google_id);
                 
                 // Log in the new user
                 $_SESSION['user_id'] = $newUserId;
