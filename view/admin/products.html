@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #246661;
+        }
+
+        .menu-item.active {
+            background-color: #289388;
+        }
+
+        .icon {
+            margin-right: 15px;
+        }
+
+        
+        
+
+
+
+        /* General Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: white;
+}
+
+thead {
+    background-color: #f9fafb; /* Tailwind's bg-gray-50 */
+    border-bottom: 2px solid #e5e7eb; /* Tailwind's border-gray-200 */
+}
+
+th, td {
+    padding: 0.75rem; /* Tailwind's p-3 */
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    font-weight: 600; /* Tailwind's font-semibold */
+    text-align: left; /* Tailwind's text-left */
+    line-height: 1.25rem; /* Tailwind's leading-5 */
+    color: #1f2937; /* Tailwind's text-gray-900 */
+}
+
+tbody tr {
+    border-bottom: 1px solid #e5e7eb; /* Tailwind's border-gray-200 */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f3f4f6; /* Tailwind's bg-gray-100 */
+}
+
+tbody tr:hover {
+    background-color: #f9fafb; /* Highlight on hover */
+}
+
+td img {
+    width: 100px;
+}
+
+tbody td {
+    padding: 0.75rem; /* Tailwind's p-3 */
+    font-size: 0.875rem; /* Tailwind's text-sm */
+    color: #374151; /* Tailwind's text-gray-700 */
+    font-weight: 400;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Products</title>
+    <link rel="stylesheet" href="../../src/output.css">
+</head>
+
+<body class="bg-cover bg-center bg-no-repeat h-screen " style="background-image: url('../../src/img/bg.png'); display: flex; flex-direction: column; height: 100vh; overflow: hidden; ">
+    <header class="bg-[#02766f] h-24 flex items-center justify-between" style="position: fixed; left: 0; right: 0; top: 0;">
+        <!--Left Part of the Header-->
+        <div class="flex items-center justify-center ml-10">
+            <div>
+                <img src="../../src/img/logo.png" class="h-20">
+            </div>
+            <div style="margin-left: -10px;">
+                <a href="" class="text-slate-50 text-4xl font-extrabold"><p>CustomCraft</p></a>
+            </div>
+        </div>
+        <!--Right Part of the Header-->
+        <div class="flex items-center justify-between w-50 mr-20">
+            <div>
+                <img src="../../src/img/vertical.png" style="opacity: 0.5;">
+            </div>
+            <div>
+                <div style="background-color: #03615b; height: 50px; width: 50px; justify-content: center; border-radius: 30px;" class="flex items-center">
+                    <a href=""><img src="../../src/img/user.png" style="height: 30px;"></a>
+                </div>
+            </div>
+            <div>
+                <a href=""><p class="text-slate-50 font-bold text-xl ml-4">Administrator</p></a>
+            </div>
+        </div>
+    </header>
+
+    <!--Side Bar Part-->
+    <div style="background-color: #153c34; position: fixed; top: 96px; bottom: 0; left: 0;" class="w-72">
+        <div class="menu-item flex items-center cursor-pointer mt-10" data-id="dashboard" style="transition: background-color 0.3s;">
+            <a href="dashboard.html" class="flex items-center">
+                <div class="icon">
+                    <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" alt="Dashboard Icon">
+                </div>
+                <span>Dashboard</span>
+            </a>
+        </div>
+        <div class="menu-item mt-10" data-id="inventory">
+            <a href="inventory.html" class="flex items-center">
+                <div class="icon">
+                    <img src="https://img.icons8.com/ios-filled/50/FFFFFF/box.png" alt="Inventory Icon">
+                </div>
+                <span>Inventory</span>
+            </a>
+        </div>
+        <div class="menu-item mt-10" data-id="products">
+            <a href="products.html" class="flex items-center">
+                <div class="icon">
+                    <img src="https://img.icons8.com/ios-filled/50/FFFFFF/shopping-bag.png" alt="Products Icon">
+                </div>
+                <span>Products</span>
+            </a>
+        </div>
+        <div class="menu-item mt-10" data-id="orders">
+            <a href="orders.html" class="flex items-center">
+                <div class="icon">
+                    <img src="https://img.icons8.com/ios-filled/50/FFFFFF/purchase-order.png" alt="Orders Icon">
+                </div>
+                <span>Orders</span>
+            </a>
+        </div>
+        <div class="menu-item mt-10" data-id="clients">
+            <a href="client.html" class="flex items-center">
+                <div class="icon">
+                    <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user" alt="Clients Icon">
+                </div>
+                <span>Clients</span>
+            </a>
+        </div>
+    </div>
+
+    <!--Main Content Area-->
+    <main style="margin-left: 24rem; padding: 120px 20px; overflow-y: auto; background-color: #30303080; margin-top: 30px; flex:1; width: 75%; height: 100px;">
+        <!-- Your main content goes here -->
+        <h1 class="text-4xl font-bold text-slate-50">Welcome to the Products Page</h1>
+
+        <h2>Add Product</h2>
+        <form id="productForm" enctype="multipart/form-data">
+            <label for="product_name">Product Name:</label>
+            <input type="text" id="product_name" name="product_name" required><br>
+    
+            <label for="product_size">Product Size:</label>
+            <input type="text" id="product_size" name="product_size" required><br>
+    
+            <label for="product_type">Product Type:</label>
+            <input type="text" id="product_type" name="product_type" required><br>
+    
+            <label for="product_category">Product Category:</label>
+            <input type="text" id="product_category" name="product_category" required><br>
+    
+            <label for="product_price">Product Price:</label>
+            <input type="number" id="product_price" name="product_price" step="0.01" required><br>
+    
+            <label for="product_quantity">Product Quantity:</label>
+            <input type="number" id="product_quantity" name="product_quantity" required><br>
+    
+            <label for="product_image">Product Image:</label>
+            <input type="file" id="product_image" name="product_image" accept="image/*" required><br>
+    
+            <button type="submit">Submit</button>
+        </form>
+    
+    
+        
+        <h2>Product List</h2>
+        <table class="w-full">
+            <thead class="bg-gray-50 border-b-2 border-gray-200">
+                <tr>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">ID</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Name</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Size</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Type</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Category</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Price</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Quantity</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Image</th>
+                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Created At</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                <!-- Product rows will be appended here -->
+            </tbody>
+        </table>
+        
+       
+    </main>
+    
+
+
+        <script src="../../js/admin/admin.products.js"></script>
+
+</body>
+</html>

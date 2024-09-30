@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+  background-color: #246661;
+}
+
+.menu-item.active {
+  background-color: #289388;
+}
+
+.icon {
+  margin-right: 15px;
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../../src/output.css">
+</head>
+<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('../../src/img/bg.png');">
+    <header class="bg-[#02766f] h-24 flex items-center justify-between " style="position: fixed; left: 0; right: 0; top: 0;">
+        <!--Left Part of the Header-->
+        <div class="flex items-center justify-center ml-10">
+            <div>
+                <img src="../../src/img/logo.png" class="h-20 ">
+            </div>
+            <div style="margin-left: -10px;">
+            <a href="" class="text-slate-50 text-4xl font-extrabold "><p>CustomCraft</p></a>
+            </div>
+        </div>
+        <!--Right Part of the Header-->
+        <div class="flex items-center justify-between w-50 mr-20">
+            <div>
+                <img src="../../src/img/vertical.png" style="opacity: 0.5;">
+            </div>
+            <div>
+                <div style="background-color: #03615b; height: 50px; width: 50px; justify-content: center; border-radius: 30px;" class="flex items-center ">
+                   
+                        <a href="" ><img src="../../src/img/user.png" style="height: 30px; " >  </a>
+                </div>
+            </div>
+            <div>                                                                                                                                      
+                <a href=""><p class="text-slate-50 font-bold text-xl ml-4" >Administrator</p></a>
+            </div>
+        </div>
+    </header>
+
+  <!--Side Bar Part-->
+  <div  style="background-color: #153c34; position: fixed; top: 96px; bottom: 0; " class="w-72">
+
+   
+
+    <div class="menu-item  flex items-center cursor-pointer mt-10" data-id="dashboard" style="transition: background-color 0.3s;" >
+        <a href="dashboard.html" class="flex items-center">
+          <div class="icon">
+            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/home.png" alt="Dashboard Icon">
+          </div>
+          <span>Dashboard</span>
+        </a>
+      </div>
+      <div class="menu-item mt-10" data-id="inventory">
+        <a href="inventory.html" class="flex items-center">
+          <div class="icon">
+            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/box.png" alt="Inventory Icon">
+          </div>
+          <span>Inventory</span>
+        </a>
+      </div>
+      <div class="menu-item mt-10" data-id="products">
+        <a href="products.html" class="flex items-center">
+          <div class="icon">
+            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/shopping-bag.png" alt="Products Icon">
+          </div>
+          <span>Products</span>
+        </a>
+      </div>
+      <div class="menu-item mt-10" data-id="orders">
+        <a href="orders.html" class="flex items-center">
+          <div class="icon">
+            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/purchase-order.png" alt="Orders Icon">
+          </div>
+          <span>Orders</span>
+        </a>
+      </div>
+      <div class="menu-item mt-10" data-id="clients">
+        <a href="client.html" class="flex items-center">
+          <div class="icon">
+            <img src="https://img.icons8.com/ios-filled/50/FFFFFF/user" alt="Clients Icon">
+          </div>
+          <span>Clients</span>
+        </a>
+      </div>
+
+    
+
+</div>
+
+
+<script src="../../js/admin/admin.products.js"></script>
+
+    
+</body>
+</html>
