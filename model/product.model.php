@@ -23,5 +23,13 @@ class Product {
         }
         return $products;
     }
+
+    public function deleteProducts($id) {
+        $sql = "DELETE FROM products WHERE id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $id);
+        return $stmt->execute();
+    }
+    
 }
 ?>

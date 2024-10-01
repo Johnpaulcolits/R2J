@@ -76,16 +76,50 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${product.product_quantity}</td>
                     <td><img src="../${product.product_image}" </td>
                     <td>${new Date(product.created_at).toLocaleString()}</td>
+                    <td><button class="delete-btn" data-id="${product.id}">Delete</button></td>
+                    <td><button class="update-btn" data-id="${product.id}">Update</button></td>
+                    
                 `;
 
                 // Append the row to the table body
                 productTableBody.appendChild(row);
+            });
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productId = event.target.getAttribute('data-id');
+                    deleteProduct(productId);
+                });
             });
         })
         .catch(error => {
             console.error('Error fetching products:', error); // Handle fetch errors
         });
 });
+
+// Function to handle product deletion
+function deleteProduct(productId) {
+    if (confirm('Are you sure you want to delete this product?')) {
+        fetch(`../../controller/products.php`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id=${productId}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Product deleted successfully!');
+                location.reload(); // Reload the page to refresh the product list
+            } else {
+                alert('Error deleting product: ' + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting product:', error);
+        });
+    }
+}
 
 }
 tableFunction();

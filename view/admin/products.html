@@ -83,6 +83,11 @@ tbody td {
 }
 
 
+
+
+
+
+
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -166,47 +171,83 @@ tbody td {
         <!-- Your main content goes here -->
         <h1 class="text-4xl font-bold text-slate-50">Welcome to the Products Page</h1>
 
-        <h2>Add Product</h2>
-        <form id="productForm" enctype="multipart/form-data">
-            <label for="product_name">Product Name:</label>
-            <input type="text" id="product_name" name="product_name" required><br>
+        
+        <form id="productForm" enctype="multipart/form-data" >
+            
+            <div class="flex items-center justify-between ">
+            <div style="margin-left: 100px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 800px;">
+                
+                <input type="text" id="product_name" name="product_name" required class="bg-transparent border-b-2
+                border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+                placeholder="Product Name"><br>
+        
+                
+                <input type="text" id="product_size" name="product_size" required class="bg-transparent border-b-2
+                border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+                placeholder="Product Size"><br>
+            </div>
+           
     
-            <label for="product_size">Product Size:</label>
-            <input type="text" id="product_size" name="product_size" required><br>
+            <div class="flex items-center justify-between" style="width: 790px;">
+                
+            <input type="text" id="product_type" name="product_type" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Type">
     
-            <label for="product_type">Product Type:</label>
-            <input type="text" id="product_type" name="product_type" required><br>
+            
+            <input type="text" id="product_category" name="product_category" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Category">
+            </div>
     
-            <label for="product_category">Product Category:</label>
-            <input type="text" id="product_category" name="product_category" required><br>
+          <div style="display: flex; align-items: center; justify-content: space-between; width: 790px;" >
+           
+            <input type="number" id="product_price" name="product_price" step="0.01" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Price">
     
-            <label for="product_price">Product Price:</label>
-            <input type="number" id="product_price" name="product_price" step="0.01" required><br>
+          
+            <input type="number" id="product_quantity" name="product_quantity" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Quantity">
+          </div>
+        </div>
+
+            <div style="background-color: white; width: 300px; height: 300px; border-radius: 4px; display: flex; 
+            flex-direction: column; align-items: center; justify-content: center; font-family: Arial, Helvetica, sans-serif; 
+            font-weight:bolder; margin-right: 50px;">
+            <label for="product_image">Select Image</label>
+            <img src="../../src/img/insertp.png" style="height: 200px; ">
+           <button> <input type="file" id="product_image" name="product_image" accept="image/*" required style=" margin-left: 70px;
+           color: red;"></button>
+             </div>
+            </div>
+             
     
-            <label for="product_quantity">Product Quantity:</label>
-            <input type="number" id="product_quantity" name="product_quantity" required><br>
-    
-            <label for="product_image">Product Image:</label>
-            <input type="file" id="product_image" name="product_image" accept="image/*" required><br>
-    
-            <button type="submit">Submit</button>
+            <div style="background-color: white; width: 70px; display: flex; align-items: center; justify-content: center;
+            height: 70px; border-radius: 35px; margin-left: 60px;" >
+                <button type="submit"><img src="../../src/img/addbutton.png" style="height: 60px;"></button>
+            </div>
         </form>
     
     
         
-        <h2>Product List</h2>
+        <h1 style="color: white; margin-top: 40px; font-weight: bolder; font-size: 30px;">Product List</h1>
         <table class="w-full">
             <thead class="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">ID</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Name</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Size</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Type</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Category</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Price</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Quantity</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Product Image</th>
-                    <th class="p-3 text-sm font font-semibold tracking-wide text-left">Created At</th>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Product Size</th>
+                    <th>Product Type</th>
+                    <th>Product Category</th>
+                    <th>Product Price</th>
+                    <th>Product Quantity</th>
+                    <th>Product Image</th>
+                    <th>Created At</th>
+                    <th>Delete</th>
+                    <th>Update</th>
                 </tr>
             </thead>
             <tbody id="productTableBody">
@@ -219,7 +260,74 @@ tbody td {
     
 
 
-        <script src="../../js/admin/admin.products.js"></script>
+        <script src="../../js/admin/admin.products.js">
+//             // JavaScript for fetching product data and displaying it in the table
+// document.addEventListener('DOMContentLoaded', () => {
+//     fetch('../../controller/products.php')
+//         .then(response => response.json())
+//         .then(data => {
+//             const productTableBody = document.getElementById('productTableBody');
+//             productTableBody.innerHTML = ''; // Clear any existing rows
+
+//             data.forEach(product => {
+//                 const row = document.createElement('tr');
+
+//                 // Create table cells for each product field
+//                 row.innerHTML = `
+//                     <td>${product.id}</td>
+//                     <td>${product.product_name}</td>
+//                     <td>${product.product_size}</td>
+//                     <td>${product.product_type}</td>
+//                     <td>${product.product_category}</td>
+//                     <td>$${parseFloat(product.product_price).toFixed(2)}</td>
+//                     <td>${product.product_quantity}</td>
+//                     <td><img src="../${product.product_image}" </td>
+//                     <td>${new Date(product.created_at).toLocaleString()}</td>
+//                     <td><button class="delete-btn" data-id="${product.id}">Delete</button></td>
+//                     <td><button class="update-btn" data-id="${product.id}">Update</button></td>
+                    
+//                 `;
+
+//                 // Append the row to the table body
+//                 productTableBody.appendChild(row);
+//             });
+//             document.querySelectorAll('.delete-btn').forEach(button => {
+//                 button.addEventListener('click', (event) => {
+//                     const productId = event.target.getAttribute('data-id');
+//                     deleteProduct(productId);
+//                 });
+//             });
+//         })
+//         .catch(error => {
+//             console.error('Error fetching products:', error); // Handle fetch errors
+//         });
+// });
+
+// // Function to handle product deletion
+// function deleteProduct(productId) {
+//     if (confirm('Are you sure you want to delete this product?')) {
+//         fetch(`../../controller/products.php`, {
+//             method: 'DELETE',
+//             headers: {
+//                 'Content-Type': 'application/x-www-form-urlencoded',
+//             },
+//             body: `id=${productId}`
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.success) {
+//                 alert('Product deleted successfully!');
+//                 location.reload(); // Reload the page to refresh the product list
+//             } else {
+//                 alert('Error deleting product: ' + data.error);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error deleting product:', error);
+//         });
+//     }
+// }
+        </script>
 
 </body>
 </html>

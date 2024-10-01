@@ -39,7 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid image file']);
     }
-} else {
+} elseif($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+  // Handle product deletion
+  parse_str(file_get_contents("php://input"), $_DELETE);
+  $productId = $_DELETE['id'];
+
+  if ($productId) {
+      $success = $productModel->deleteProducts($productId);
+      echo json_encode(['success' => $success]);
+  } else {
+      echo json_encode(['success' => false, 'error' => 'Product ID is required']);
+  }
+}
+ else {
     // Handle fetching data
     $products = $productModel->getAllProducts();
     echo json_encode($products);

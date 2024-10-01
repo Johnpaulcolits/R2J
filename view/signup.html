@@ -8,7 +8,31 @@
     <script src="../js/homepage.js" defer></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
    
-
+    <style>
+      .nav-link p {
+          text-decoration: none; /* Remove default underline */
+      }
+      
+      .nav-link:hover p {
+          text-decoration: underline; /* Add underline on hover */
+          text-decoration-color: white; /* Optional: specify underline color */
+          text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+      }
+      
+      .underline {
+          text-decoration: underline; /* Ensure underline is applied */
+          text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+      }
+      
+      .underline-offset-8 {
+          text-underline-offset: 8px; /* Distance between text and underline */
+      }
+      
+      .decoration-white {
+          text-decoration-color: white; /* Underline color */
+      }
+      
+      </style>
 </head>
 <body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('../src/img/bg.png');">
 
@@ -92,7 +116,48 @@
 
 
 
+<!-- <script>
+     document.addEventListener('DOMContentLoaded', () => {
+            // Get all the navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
 
+            // Function to highlight the active link
+            function highlightActiveLink() {
+                // Retrieve the stored active link from localStorage
+                const activeLink = localStorage.getItem('activeLink') || window.location.pathname;
+
+                navLinks.forEach(link => {
+                    // Remove underline from all links
+                    link.classList.remove('underline', 'underline-offset-8', 'decoration-white');
+                    
+                    // Add underline to the link that matches the active link
+                    if (link.getAttribute('href') === activeLink) {
+                        link.classList.add('underline', 'underline-offset-8', 'decoration-white');
+                    }
+                });
+            }
+
+            // Call the function to highlight the active link on page load
+            highlightActiveLink();
+
+            // Add event listener to each link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // Prevent default action to stop page reload
+                    e.preventDefault();
+
+                    // Store the clicked link's href in localStorage
+                    localStorage.setItem('activeLink', this.getAttribute('href'));
+
+                    // Simulate navigation (you might need to use window.location.href if real navigation is required)
+                    window.location.href = this.getAttribute('href');
+                    
+                    // Highlight the clicked link
+                    highlightActiveLink();
+                });
+            });
+        });
+</script> -->
 
   
 </body>

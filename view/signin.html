@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in</title>
@@ -9,10 +10,34 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   
 
+    <style>
+      .nav-link p {
+          text-decoration: none; /* Remove default underline */
+      }
+      
+      .nav-link:hover p {
+          text-decoration: underline; /* Add underline on hover */
+          text-decoration-color: white; /* Optional: specify underline color */
+          text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+      }
+      
+      .underline {
+          text-decoration: underline; /* Ensure underline is applied */
+          text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+      }
+      
+      .underline-offset-8 {
+          text-underline-offset: 8px; /* Distance between text and underline */
+      }
+      
+      .decoration-white {
+          text-decoration-color: white; /* Underline color */
+      }
+      
+      </style>
 
 
-
-
+    
 </head>
 <body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('../src/img/bg.png');">
 
@@ -91,6 +116,7 @@
   </div>
 
 </div>
+
 
 
 </body>
