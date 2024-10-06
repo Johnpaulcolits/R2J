@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craft Homepage</title>
+    <link rel="stylesheet" href="./src/output.css">
+  
+    
+
+    
+<style>
+.nav-link p {
+    text-decoration: none; /* Remove default underline */
+}
+
+.nav-link:hover p {
+    text-decoration: underline; /* Add underline on hover */
+    text-decoration-color: white; /* Optional: specify underline color */
+    text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+}
+
+.underline {
+    text-decoration: underline; /* Ensure underline is applied */
+    text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+}
+
+.underline-offset-8 {
+    text-underline-offset: 8px; /* Distance between text and underline */
+}
+
+.decoration-white {
+    text-decoration-color: white; /* Underline color */
+}
+
+</style>
+
+</head>
+<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('./src/img/bg.png');">
+
+    <!--header of the Page-->
+   <header class="bg-[#02766f] h-24 flex items-center justify-between fixed" style="right: 0; left: 0; top: 0;">
+      
+    <!--Left Part of the Header-->
+    <div class="ml-20" >
+       <a href=""><p class="text-neutral-50 text-3xl font-extrabold ">CustomCraft</p></a>
+    </div>
+
+   <!--Right Part of the Header-->
+    <div class="flex items-center justify-between w-1/2 mr-20">
+     <div>
+        <a href="index.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal ">Home</p></a>
+     </div>
+     <div>
+        <a href="./view/products.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Products</p></a>
+     </div>
+     <div>
+        <a href="./view/about.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">About</p></a>
+     </div>
+     <div>
+        <a href="./view/signin.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Sign in</p></a>
+     </div>
+     <div>
+        <a href="./view/signup.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Sign up</p></a>
+     </div>
+    </div>
+   </header>
+
+
+
+      <!--homepage content-->
+   <div class=" flex items-center justify-between p-20 ">
+
+   <!--homepage subcontent left-->
+ 
+      <div class=" mt-20 ml-20">
+
+          <div class="ml-20">
+            <p class="text-neutral-50 text-7xl font-bold ">CustomCraft</p>
+          </div>
+
+       <div class="ml-20">
+         <p class="text-neutral-50 text-4xl font-light pt-8">Where your Vision Comes to light</p> 
+       </div>
+
+       <div class="p-20 ml-10" >
+         <a href=""><button class="text-neutral-50 text-2xl font-extralight  bg-[#30303080]  pl-20 pr-20 pt-5 pb-5
+            rounded-2xl hover:bg-[#303030FF]" >Get Started</button></a>
+       </div>
+        
+      </div>
+
+
+         <!--homepage subcontent Right-->
+      <div >
+        
+
+
+<!--homepage subcontent upper-->
+<div class="bg-black h-40 w-72">
+
+
+</div>
+
+<!--homepage subcontent bottom-->
+<div class="bg-neutral-50 h-40 w-72">
+
+
+</div>
+
+
+
+
+
+      </div>
+ 
+    </div>
+
+   
+
+
+ <script src="./js/homepage.js"></script>
+</body>
+
+</html>
+

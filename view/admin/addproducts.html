@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Product Insertion</title>
+    <link rel="stylesheet" href="../../src/output.css">
+</head>
+<body class="bg-cover bg-center bg-no-repeat h-screen " style="background-image: url('../../src/img/bg.png'); display: flex; flex-direction: column; height: 100vh; overflow: hidden; ">
+    <!--Main Content Area-->
+    <main style=" background-color: #30303080; width: 70%; height: 600px; margin-top: 120px; margin-left: 290px; border-radius: 20px;" >
+        <!-- Your main content goes here -->
+        <h1 class="text-4xl font-bold text-slate-50 " style="margin-top: 100px; margin-left: 140px;" > Add New Products</h1>
+
+        
+        <form id="productForm" enctype="multipart/form-data" >
+            
+            <div class="flex items-center justify-between ">
+            <div style="margin-left: 100px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; width: 800px;">
+                
+                <input type="text" id="product_name" name="product_name" required class="bg-transparent border-b-2
+                border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+                placeholder="Product Name"><br>
+        
+                
+                <!-- <input type="text" id="product_size" name="product_size" required class="bg-transparent border-b-2
+                border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+                placeholder="Product Size"><br> -->
+
+                <select name="product_size" id="product_size" required class="bg-transparent border-b-2
+                border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " > 
+                    <option value="Small" class="text-black">Small</option>
+                    <option value="Medium" class="text-black">Medium</option>
+                    <option value="Large" class="text-black">Large</option>
+                </select>
+            </div>
+           
+    
+            <div class="flex items-center justify-between" style="width: 790px;">
+                
+            <input type="text" id="product_type" name="product_type" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Type">
+    
+            
+            <input type="text" id="product_category" name="product_category" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Category">
+            </div>
+    
+          <div style="display: flex; align-items: center; justify-content: space-between; width: 790px;" >
+           
+            <input type="number" id="product_price" name="product_price" step="0.01" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Price">
+    
+          
+            <input type="number" id="product_quantity" name="product_quantity" required class="bg-transparent border-b-2
+            border-slate-50  placeholder-slate-50 w-96 text-center text-2xl  p-2 text-slate-50 " 
+            placeholder="Product Quantity">
+          </div>
+        </div>
+
+            <div style="background-color: white; width: 300px; height: 300px; border-radius: 4px; display: flex; 
+            flex-direction: column; align-items: center; justify-content: center; font-family: Arial, Helvetica, sans-serif; 
+            font-weight:bolder; margin-right: 50px;">
+            <label for="product_image">Select Image</label>
+            <img src="../../src/img/insertp.png" style="height: 200px; ">
+           <button> <input type="file" id="product_image" name="product_image" accept="image/*" required style=" margin-left: 70px;
+           color: red;"></button>
+             </div>
+            </div>
+             
+    
+            <div style="background-color: white; width: 70px; display: flex; align-items: center; justify-content: center;
+            height: 70px; border-radius: 35px; margin-left: 90px;" >
+                <button type="submit"><img src="../../src/img/addbutton.png" style="height: 60px;"></button>
+            </div>
+
+
+            <div class="flex items-center mt-5">
+                <p class="text-slate-50 ml-11">Already Done Adding Products?  </p>
+            <a href="products.html"><p class="text-red-500 ml-4">Click Here</p></a>
+            </div>
+        </form>
+    
+    
+      
+        
+       
+    </main> 
+
+  <script src="../../js/admin/admin.products.js"></script>
+</body>
+</html>
