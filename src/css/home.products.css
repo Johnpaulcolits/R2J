@@ -1,0 +1,149 @@
+.categories-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    display: flex;
+    position: relative;
+    width: 1010px; /* Adjust width to fit three images plus margin */
+    height: 350px;
+    overflow: hidden;
+    margin-left: 150px;
+}
+
+.card-list {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.card-item {
+    flex-shrink: 0;
+    width: 300px;
+    margin: 0 10px; /* Adjust spacing between images */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-image {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #5372F0;
+    background: #DDE4FF;
+    padding: 4px 8px;
+    margin-top: 10px;
+    width: 200px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+/* Hide arrows by default */
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 1;
+    opacity: 0; /* Hide by default */
+    transition: opacity 0.3s ease; /* Smooth fade effect */
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* Show arrows when hovering over the slider */
+.slider-wrapper:hover .prev-btn,
+.slider-wrapper:hover .next-btn {
+    opacity: 1; /* Show on hover */
+}
+
+.header{
+    z-index: 100;
+}
+
+
+
+
+
+
+.product-image{
+    height: 250px;
+    width: 200px;
+
+}
+
+.product-container:hover{
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+    transform: translate(0px, -8px);
+}
+
+.product-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transform: translate(0px, -8px);
+}
+
+
+.cart-image{
+    width: 40px;
+   
+}
+
+
+
+
+
+
+
+.cart-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+
+.cart-hover-box {
+    display: none;
+    position: absolute;
+    top: 50px; 
+    right: 0;
+    width: 200px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    text-align: center;
+    display: flex;
+   
+}
+
+.cart-hover-box img {
+    width: 50px; 
+    margin-bottom: 10px;
+}
+
+
+.cart-wrapper:hover .cart-hover-box {
+    display: block;
+}
+
+

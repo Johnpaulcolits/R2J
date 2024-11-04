@@ -44,10 +44,13 @@
                 <input type="email" id="email" name="email" required class="bg-transparent border-b-2
                 border-slate-50  placeholder-slate-50 w-96 text-center text-xl  p-2 text-slate-50 ml-4 mb-10" placeholder="Email"><br>
                 
-                <input type="password" id="password" name="password" required class="bg-transparent border-b-2
-                border-slate-50  placeholder-slate-50 w-80 text-center text-2xl  p-2 text-slate-50 ml-11" placeholder="Password"><br>
-                <input type="password" id="confirm_password" name="confirm_password" required class="bg-transparent border-b-2
-                border-slate-50  placeholder-slate-50 w-80 text-center text-2xl  p-2 text-slate-50 ml-11" placeholder="Confirm Password"><br>
+                <select name="role" id="role" required class="bg-transparent border-b-2
+                border-slate-50  placeholder-slate-50 w-96 text-center text-xl  p-2 text-slate-50 ml-4 mb-10" >
+                <option value="" disabled selected>Select Role</option>
+                    <option value="">superadmin</option>
+                    <option value="">admin</option>
+                </select><br>
+               
                 <button type="submit" class="bg-[#303030FF] ml-24 text-slate-300 h-20 w-64 rounded-2xl mt-10 text-3xl font-light ">Register</button>
                 
              
@@ -63,7 +66,46 @@
 
 
 
-<script src="../../js/admin/admin.login.js" defer></script>
+<script >
+ document.getElementById('admin-registration-form').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Gather form data
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const email = document.getElementById('email').value;
+    const role = document.getElementById('role').value;
+
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append('action', 'register');
+    formData.append('firstname', firstname);
+    formData.append('lastname', lastname);
+    formData.append('email', email);
+    formData.append('role', role);
+
+    // Send data to the server
+    fetch('../../controller/admin.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert(data.message);
+            // Optionally, redirect to another page or clear the form
+            // window.location.href = 'some_page.php';
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error with your registration. Please try again.');
+    });
+});
+
+</script>
 
 </body>
 </html>

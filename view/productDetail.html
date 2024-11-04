@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Products</title>
+    <link rel="stylesheet" href="../src/css/home.products.css">
+    <link rel="stylesheet" href="../src/output.css">
+    <link rel="stylesheet" href="../src/css/productdetails.css">
+  
+    <style>
+      .nav-link p {
+          text-decoration: none; 
+      }
+      
+      .nav-link:hover p {
+          text-decoration: underline; 
+          text-decoration-color: white; 
+          text-decoration-thickness: 2px;
+      }
+      
+      .underline {
+          text-decoration: underline; 
+          text-decoration-thickness: 2px; 
+      }
+      
+      .underline-offset-8 {
+          text-underline-offset: 8px; 
+      }
+      
+      .decoration-white {
+          text-decoration-color: white; 
+      }
+      .empty-cart-image{
+        margin-left: 50px;
+      }
+      .cart-string{
+        font-weight: 600;
+      }
+
+      
+      
+      </style>
+   
+
+</head>
+<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('../src/img/bg.png'); background-size: auto; background-attachment: fixed;">
+
+    <!--header of the Page-->
+   <header class="bg-[#02766f] h-24 flex items-center justify-between header" style="position: fixed; top: 0; left: 0; right: 0;">
+      
+    <!--Left Part of the Header-->
+    <div class="ml-20" >
+       <a href=""><p class="text-neutral-50 text-3xl font-extrabold">CustomCraft</p></a>
+    </div>
+
+   <!--Right Part of the Header-->
+    <div class="flex items-center justify-between w-1/2 mr-20">
+     <div>
+        <a href="../index.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal ">Home</p></a>
+     </div>
+     <div>
+        <a href="products.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Products</p></a>
+     </div>
+     <div>
+        <a href="about.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">About</p></a>
+     </div>
+     <div>
+        <a href="signin.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Sign in</p></a>
+     </div>
+     <div>
+        <a href="signup.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Sign up</p></a>
+     </div>
+
+    
+<div class="cart-wrapper">
+    <button>
+        <a href="signin.html">
+            <img src="../src/img/cart.png" class="cart-image">
+        </a>
+    </button>
+
+  
+    <div class="cart-hover-box" >
+        <img src="../src/img/emptybox.png" alt="No Products" class="empty-cart-image" >
+        <p class="cart-string">No Products Yet</p>
+    </div>
+</div>
+
+</div>
+
+    </div>
+   </header>
+
+   <main style="margin-left: 12rem; padding: 120px 20px;  background-color: #30303080; margin-top: 30px; flex:1; width: 75%; height: 100px; ">
+
+
+    <div id="productDetail" class="product-detail-container">
+
+        
+    </div>
+
+     
+   </main>
+   
+
+
+
+
+</body>
+
+
+</html>
+<script src="../js/productDetail.js"></script>
+

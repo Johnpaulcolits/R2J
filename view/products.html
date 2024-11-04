@@ -3,42 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
     <title>Products</title>
+    <link rel="stylesheet" href="../src/css/home.products.css">
     <link rel="stylesheet" href="../src/output.css">
     <script src="../js/homepage.js"></script>
   
     <style>
       .nav-link p {
-          text-decoration: none; /* Remove default underline */
+          text-decoration: none; 
       }
       
       .nav-link:hover p {
-          text-decoration: underline; /* Add underline on hover */
-          text-decoration-color: white; /* Optional: specify underline color */
-          text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+          text-decoration: underline; 
+          text-decoration-color: white; 
+          text-decoration-thickness: 2px;
       }
       
       .underline {
-          text-decoration: underline; /* Ensure underline is applied */
-          text-decoration-thickness: 2px; /* Optional: thickness of the underline */
+          text-decoration: underline; 
+          text-decoration-thickness: 2px; 
       }
       
       .underline-offset-8 {
-          text-underline-offset: 8px; /* Distance between text and underline */
+          text-underline-offset: 8px; 
       }
       
       .decoration-white {
-          text-decoration-color: white; /* Underline color */
+          text-decoration-color: white; 
       }
+      .empty-cart-image{
+        margin-left: 50px;
+      }
+      .cart-string{
+        font-weight: 600;
+      }
+
+      
       
       </style>
    
 
 </head>
-<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('../src/img/bg.png'); ">
+<body class="bg-cover bg-center bg-no-repeat h-screen" style="background-image: url('../src/img/bg.png'); background-size: auto; background-attachment: fixed;">
 
     <!--header of the Page-->
-   <header class="bg-[#02766f] h-24 flex items-center justify-between " style="position: fixed; top: 0; left: 0; right: 0;">
+   <header class="bg-[#02766f] h-24 flex items-center justify-between header" style="position: fixed; top: 0; left: 0; right: 0;">
       
     <!--Left Part of the Header-->
     <div class="ml-20" >
@@ -62,11 +72,92 @@
      <div>
         <a href="signup.html" class="nav-link"><p class="text-neutral-50 text-2xl font-normal">Sign up</p></a>
      </div>
+
+    
+<div class="cart-wrapper">
+    <button>
+        <a href="signin.html">
+            <img src="../src/img/cart.png" class="cart-image">
+        </a>
+    </button>
+
+  
+    <div class="cart-hover-box" >
+        <img src="../src/img/emptybox.png" alt="No Products" class="empty-cart-image" >
+        <p class="cart-string">No Products Yet</p>
+    </div>
+</div>
+
+</div>
+
     </div>
    </header>
 
-   <main style="margin-left: 12rem; padding: 120px 20px;  background-color: #30303080; margin-top: 30px; flex:1; width: 75%; height: 100px;">
-      <div id="productContainer" class="product-container" style=" display: flex; flex-wrap: wrap; gap: 20px;">
+   <main style="margin-left: 12rem; padding: 120px 20px;  background-color: #30303080; margin-top: 30px; flex:1; width: 75%; height: 100px; ">
+
+
+
+    <div id="slider" class="slider-wrapper">
+        <button class="prev-btn" onclick="slide(-1)">&#10094;</button>
+        <div class="card-list" id="card-list">
+            <!-- Product cards will be injected here by JavaScript -->
+        </div>
+        <button class="next-btn" onclick="slide(1)">&#10095;</button>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('getProducts.php')
+            .then(response => response.json())
+            .then(data => {
+                const productContainer = document.getElementById('card-list');
+                productContainer.innerHTML = ''; // Clear any existing content
+    
+                data.forEach(product => {
+                    // Create a list item for each product
+                    const productItem = document.createElement('li');
+                    productItem.classList.add('card-item');
+    
+                    // Create content for product card
+                    productItem.innerHTML = `
+                        <a href="#" class="card-link">
+                            <img src="../src/${product.product_image}" alt="${product.product_name}" class="card-image">
+                            <div class="product-name">${product.product_category}</div>
+                        </a>
+                    `;
+    
+                    // Append product item to the container
+                    productContainer.appendChild(productItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error); // Handle fetch errors
+            });
+    });
+    
+    // Slider functionality
+    let slideIndex = 0;
+    function slide(direction) {
+        const cardList = document.getElementById('card-list');
+        const itemsVisible = 3; // Show 3 images per slide
+        const totalItems = cardList.children.length;
+        const itemWidth = 300; // width of each card item in pixels including margin
+    
+        slideIndex += direction;
+        if (slideIndex < 0) slideIndex = totalItems - itemsVisible;
+        if (slideIndex > totalItems - itemsVisible) slideIndex = 0;
+    
+        cardList.style.transform = `translateX(-${slideIndex * itemWidth}px)`;
+    }
+    </script>
+    
+    
+
+
+
+
+
+      <div id="productContainer" class="product-container" style=" display: flex; flex-wrap: wrap; gap: 20px; margin-top: 200px;">
          <!-- Product items will be appended here -->
      </div>
      
@@ -90,16 +181,15 @@
                 // Create inner divs for product name and price
                 productDiv.innerHTML = `
                 
-                <div class="bg-slate-50 h-32 w-50" style="background-color: white;">
-                    <div class="product-image">
-                        <img src="../src/${product.product_image}" alt="${product.product_name}" class="w-2  object-cover rounded-lg " 
-                        style="height:300px; width:250px">
-                    </div>
-                    <div class="product-details">
+             
+                  <a href="productDetail.html?id=${product.id}" class="card-link">
+                        <img src="../src/${product.product_image}" alt="${product.product_name}" class="product-image" >
+                    
+                   
                         <div class="product-name font-bold text-lg">${product.product_name}</div>
                         <div class="product-price text-green-500">$${parseFloat(product.product_price).toFixed(2)}</div>
-                    </div>
-                    </div>
+                    
+                    </a>
                     
                 `;
 

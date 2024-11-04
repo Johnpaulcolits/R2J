@@ -1,0 +1,18 @@
+.product-image{
+height: 750px;
+width: 600px;
+margin-left: 40px;
+}
+
+.product-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.product-details-name{
+    color: white;
+    font-size: 70px;
+    margin-bottom: 600px;
+    margin-right: 40px;
+}
