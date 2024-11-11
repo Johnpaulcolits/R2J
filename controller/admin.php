@@ -30,28 +30,26 @@ class AdminController {
         }
     }
 
-    public function login($email, $password) {
-        $admin = $this->admin->findByEmail($email);
+    // public function login($email, $password) {
+    //     $admin = $this->admin->findByEmail($email);
 
-        if ($admin && password_verify($password, $admin['password'])) {
-            $_SESSION['email'] = $admin['email'];
-            echo json_encode(['status' => 'success', 'message' => 'Login Successfully']);
-        } else {
-            echo json_encode(['status' => 'error', 'message' => 'Invalid Email or Password']);
-        }
-    }
+    //     if ($admin && password_verify($password, $admin['password'])) {
+    //         $_SESSION['email'] = $admin['email'];
+    //         echo json_encode(['status' => 'success', 'message' => 'Login Successfully']);
+    //     } else {
+    //         echo json_encode(['status' => 'error', 'message' => 'Invalid Email or Password']);
+    //     }
+    // }
 }
 
 $AdminController = new AdminController();
 
-if (isset($_POST['action'])) {
-    if ($_POST['action'] == 'login') {
-        $AdminController->login($_POST['email'], $_POST['password']);
-    } elseif ($_POST['action'] == 'register') {
-        $AdminController->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['role']);
-    }
-} else {
-    echo json_encode(['status' => 'error', 'message' => 'No action specified.']);
+// if ($_POST['action'] == 'login') {
+//     $AdminController->login($_POST['email'], $_POST['password']);
+// } elseif ($_POST['action'] == 'register') {
+//     $AdminController->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['role']);
+// }
+if ($_POST['action'] == 'register') {
+    $AdminController->register($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['role']);
 }
-
 ?>

@@ -1,6 +1,7 @@
 {
     "require": {
         "google/apiclient": "^2.17",
-        "robinvdvleuten/ulid": "^5.0"
+        "robinvdvleuten/ulid": "^5.0",
+        "phpmailer/phpmailer": "^6.9"
     }
 }

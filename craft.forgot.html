@@ -1,15 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forget Password</title>
-</head>
-<body>
-    <form id="forgotPasswordForm">
-        <label for="email">Enter Your Email</label>
-        <input type="text" id="email" name="email" required placeholder="Email">
-        <button type="submit">Send Reset Link</button>
-    </form>
-</body>
-</html>
+<!-- HTML Form for entering email to receive OTP -->
+<form id="forgot-password-form">
+    <label for="email">Enter your email:</label>
+    <input type="email" id="email" name="email" required>
+    <button type="submit">Send OTP</button>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Define the Toast configuration for SweetAlert2
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
+    document.getElementById('forgot-password-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+
+        // Make a fetch request to the PHP script that sends OTP
+        fetch('./controller/otp.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the PHP script
+            if (data.success) {
+                // Show a success message using SweetAlert2 Toast
+                Toast.fire({
+                    icon: "success",
+                    title: data.message
+                }).then(() => {
+                    // Redirect to OTP verification page after showing success toast
+                    window.location.href = 'craft.verify.html';
+                });
+            } else {
+                // Show an error message using SweetAlert2 Toast
+                Toast.fire({
+                    icon: "error",
+                    title: data.message
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error sending OTP:', error);
+            // Show a generic error message using SweetAlert2 Toast
+            Toast.fire({
+                icon: "error",
+                title: "Something went wrong!"
+            });
+        });
+    });
+</script>

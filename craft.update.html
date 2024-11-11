@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Password</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <form id="update-password">
+        <label for="newpassword">New Password</label>
+        <input type="password" id="newpassword" name="newpassword" placeholder="Enter New Password" required>
+        <label for="confirmpassword">Confirm Password</label>
+        <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Your Password" required>
+        <button type="button" id="submit-button">Submit</button>
+    </form>
+    <script>
+        // Define the Toast configuration for SweetAlert2
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+
+        // Event listener for the submit button
+        document.getElementById("submit-button").addEventListener("click", function() {
+            // Check if form is valid
+            const form = document.getElementById("update-password");
+            if (!form.checkValidity()) {
+                form.reportValidity(); // Triggers the built-in HTML validation
+                return;
+            } else {
+                const newPassword = document.getElementById("newpassword").value;
+                const confirmPassword = document.getElementById("confirmpassword").value;
+
+                fetch('./controller/otp.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        newpassword: newPassword,
+                        confirmpassword: confirmPassword
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        
+                        Toast.fire({
+                            icon: 'success',
+                            title: data.message 
+                        }).then(() => {
+                            window.location.href = './view/signin.html';
+                        });
+                    } else {
+                       
+                        Toast.fire({
+                            icon: 'error',
+                            title: data.message 
+                        });
+                      
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
+</body>
+</html>
